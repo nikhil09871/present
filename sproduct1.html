@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online shop for everything</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+</head>
+<body>
+    <section id="header">
+        <a href="#"><img src="image/logo.jpeg" class="logo" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">home</a></li>
+                <li><a class="active" href="shop1.html">shop</a></li>
+                <li><a href="blog.html">blog</a></li>
+                <li><a href="about.html">about</a></li>
+                <li><a href="contact.html">contact</a></li>
+                <li><a href="cart.html" id="la-bag"><i class="far fa-shopping-bag"></i></a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="prodetails" class="section-p1">
+        <div class="single-pro-image">
+            <img src="image/sproduct.jpeg" width="100%" id="Mainimg" alt="">
+            <div class="small-img-group">
+                <div class="small-img-col">
+                    <img src="image/sproduct1.jpeg" width="100%" class="small-img" alt="">
+                </div>
+                <div class="small-img-col">
+                    <img src="image/sproduct1.jpeg" width="100%" class="small-img" alt="">
+                </div>
+                <div class="small-img-col">
+                    <img src="image/sproduct1.jpeg" width="100%" class="small-img" alt="">
+                </div>
+                <div class="small-img-col">
+                    <img src="image/sproduct1.jpeg" width="100%" class="small-img" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="single-pro-details">
+            <h6>Home/T-Shirt</h6>
+            <h4>men's fashion Tshirt</h4>
+            <h2>$139.00</h2>
+            <select>
+                <option>select size</option>
+                <option>xl</option>
+                <option>xxl</option>
+                <option>small</option>
+                <option>large</option>
+            </select>
+            <input type="number" value="1">
+            <button id="addToCartBtn">add to cart</button>
+            <h4>product details</h4>
+            <span>Our T-shirts go beyond mere fabric; they speak louder than words, allowing you to express yourself effortlessly. Dive into the latest collection and discover the perfect balance between fashion-forward designs and unparalleled comfort. Transform your wardrobe with exclusive tees that elevate your look and tell your story.</span>
+        </div>
+    </section>
+
+    <section id="product1" class="section-p1">
+        <h2>trending fashion</h2>
+        <p>summer collection new modern design</p>
+        <div class="pro">
+            <img src="image/arrival1.jpeg" alt="">
+            <div class="des">
+                <span>adidas</span>
+                <h5>cartoon astronaut T-shirt</h5>
+                <div class="star">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <h4>$78</h4>
+            </div>
+            <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+        </div>
+        <!-- Repeat similar code blocks for other products -->
+    </section>
+
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>sign up for newsletters</h4>
+            <p>get E-mail updates about our latest shop and <span>special offers.</span></p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="Your email address">
+            <button>sign up</button>
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <!-- Footer content remains unchanged -->
+    </footer>
+
+    <script>
+        var Mainimg = document.getElementById("Mainimg");
+        var smallimg = document.getElementsByClassName("small-img");
+
+        for (var i = 0; i < smallimg.length; i++) {
+            smallimg[i].onclick = function () {
+                Mainimg.src = this.src;
+            }
+        }
+
+        var addToCartBtn = document.getElementById("addToCartBtn");
+        addToCartBtn.addEventListener("click", function () {
+            var productName = document.querySelector(".single-pro-details h4").innerText;
+            var productPrice = document.querySelector(".single-pro-details h2").innerText;
+            var productImage = document.getElementById("Mainimg").src;
+
+            var item = {
+                name: productName,
+                price: parseFloat(productPrice.replace("$", "")),
+                image: productImage
+            };
+
+            var cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+            cartItems.push(item);
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+            alert("Item added to cart!");
+        });
+    </script>
+
+    <script>
+        var c = document.getElementById("la-bag");
+        c.onclick = function () {
+            alert("Check local storage");
+        }
+    </script>
+</body>
+</html>
